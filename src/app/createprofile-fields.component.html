@@ -1,0 +1,105 @@
+<!-- create Profile -->
+<div class="custom-Modal" id="createProfile">
+	<div class="costom-modal-header">
+		<a href="#" class="close-modal"><i class="material-icons">close</i></a>
+	</div>
+	<form  name="userForm" >
+		<div class="costom-modal-content">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>My Profile</h1>
+					<p>Personal</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" name="email" class="validate"   required />
+							<label  data-error="Please enter professional title">Professional Title</label>
+							<span> </span>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" name="location" class="validate"   required />
+							<label  data-error="Please enter valid Location">Location</label>
+							<span> </span>
+						</div>
+						<div class="input-field col s12">
+							<input type="text" name="aboutme" class="validate" required />
+							<label  data-error="Please enter about yourself">Location</label>
+							<span></span>
+						</div>
+					</div>
+					<p>Expertise</p>
+					<div class="row" >
+						<!--<div class="input-field col s12 m3 {{x.checked}}" ng-repeat="x in expertise">-->
+							<!--<input type="checkbox" id="{{x.id}}"  class="filled-in" />-->
+							<!--<label for="{{x.id}}">{{x.name}}</label>-->
+						</div>	
+						<div class="col s12">
+							<input type="text" id="addNewExp" />
+							<label for="addNewExp">Add new expertise</label>
+						</div>
+						<div class="col s12">
+							<input type="checkbox" id="acceptExp" class="filled-in" />
+							<label for="acceptExp">Yes I would like to contribute my skills for any project?</label>
+						</div>
+					</div>
+					<p>Portfolio</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioYoutube" />
+							<label for="portfolioYoutube">Youtube</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioBehance" />
+							<label for="portfolioBehance">Behance</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioInstagram" />
+							<label for="portfolioInstagram">Instagram</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioVimeo" />
+							<label for="portfolioVimeo">Vimeo</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioWebsite" />
+							<label for="portfolioWebsite">Personal Website</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<a href="#" class="btn btn-flat waves-effect">Add More</a>
+						</div>
+						
+					</div>
+					<p>Portfolio</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialFb" />
+							<label for="socialFb">Facebook</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialLinkedIn" />
+							<label for="socialLinkedIn">LinkedIn</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialTwitter" />
+							<label for="socialTwitter">Twitter</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<a href="#" class="btn btn-flat waves-effect">Add More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			
+		</div>
+		<div class="custom-modal-footer">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8 right-align">
+					<a href="#" class="btn btn-tertiary waves-effect close-modal">Cancel</a>
+					<input type="submit" class="btn btn-primary waves-effect" value="Create" />
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+	</form>
+</div>
