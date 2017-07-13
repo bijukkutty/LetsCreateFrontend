@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
-
+import { CreateProfileService } from './createprofile-fields.service';
 import { CreateProfileComponent } from './createprofile.component';
 import { CreateProfileFieldsComponent } from './createprofile-fields.component';
 
@@ -16,10 +15,8 @@ import { CreateProfileFieldsComponent } from './createprofile-fields.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AppRoutingModule
+    HttpModule
   ],
-  providers: [],
-  bootstrap: [CreateProfileComponent]
+  providers: [CreateProfileService]
 })
-export class AppModule { }
+export class CreateProfileModule { }

@@ -3,28 +3,27 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }        from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
-
+import { Country } from './country';
+import { CreateProfileService } from './createprofile-fields.service';
 //import { Hero }        from './hero';
 //import { HeroService } from './hero.service';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './createprofile-fields.component.html',
-  styleUrls: [ './createprofile-fields.component.css' ]
+  templateUrl: './createprofile-fields.component.html'
 })
-export class CreateProfileFieldsComponent implements OnInit {
-  //hero: Hero;
+export class CreateProfileFieldsComponent {
+  resultCountries: Array<Country>;
 
-  constructor(
-   // private heroService: HeroService,
+  constructor(private _countryService: CreateProfileService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-   /* this.route.paramMap
-      .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
-      .subscribe(hero => this.hero = hero);*/
+   this._countryService.getCountriesAll().subscribe(resultCountries => this.resultCountries = resultCountries);
+   		for (let i = 0; i < 4; i++) {
+			console.log("Country is-->"+this.resultCountries[i].lcCountryName);
+		}
   }
 
   save(): void {

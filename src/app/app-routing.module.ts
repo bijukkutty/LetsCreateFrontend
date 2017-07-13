@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreateProfileComponent }   from './createprofile.component';
@@ -6,7 +6,7 @@ import { CreateProfileFieldsComponent }      from './createprofile-fields.compon
 //import { HeroDetailComponent }  from './hero-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/createprofile', pathMatch: 'full' },
   { path: 'createprofile',  component: CreateProfileComponent },
   { path: 'profileFields', component: CreateProfileFieldsComponent }
   //{ path: 'heroes',     component: HeroesComponent }
@@ -17,3 +17,4 @@ const routes: Routes = [
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
+ 
