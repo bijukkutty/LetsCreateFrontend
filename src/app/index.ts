@@ -1,4 +1,4 @@
-/**
+/** Comment
 *	This barrel file provides the export for the lazy loaded ServiceOfferingsComponent.
 */
 export * from './app.component'
