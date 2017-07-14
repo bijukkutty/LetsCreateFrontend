@@ -7,7 +7,7 @@
 	<form  name="userForm" >
 		<div class="costom-modal-content">
 			<div class="row">
-				<div class="col l2 hide-on-med-and-down"></div>
+				 <div class="col l2 hide-on-med-and-down"></div> 
 				<div class="col s12 l8">
 					<h1>My Profile</h1>
 					<p>Personal</p>
@@ -22,12 +22,62 @@
 							<label  data-error="Please enter valid Location">Location</label>
 							<span> </span>
 						</div>
-						<div class="input-field col s12">
+<!-- 						<div class="input-field col s12">
 							<input type="text" name="aboutme" class="validate" required />
-							<label  data-error="Please enter about yourself">Location</label>
+							<label  data-error="Please enter about yourself">Location1</label>
 							<span></span>
+						</div> -->
+											
+
+<!-- 						<div class="input-field col s12">
+							<select *ngFor="let country of resultCountries">
+								 <option value="" disabled selected>Country</option>
+								<option value="1">{{country.lcCountryName}}}</option>
+							</select>
+						</div> -->
+					</div>
+					<div class="row">
+						<div class="btn-group" dropdown>
+							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
+								Select Country <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+								<li *ngFor="let country of resultCountries">
+									<a class="dropdown-item" (click)="processCountrySelection(country)">
+										{{country.lcCountryName}}</a>
+								</li>
+							</ul>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="btn-group" dropdown>
+							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
+								Select State <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+								<li *ngFor="let state of resultStates">
+									<a class="dropdown-item" (click)="processStateSelection(state)">
+										{{state.lcStateName}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="btn-group" dropdown>
+							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
+								Select City <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+								<li *ngFor="let city of resultCities">
+									<a class="dropdown-item" (click)="processCitySelection(city)">
+										{{city.lcCityName}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
 					<p>Expertise</p>
 					<div class="row" >
 						<!--<div class="input-field col s12 m3 {{x.checked}}" ng-repeat="x in expertise">-->

@@ -4,6 +4,8 @@ import { Component, OnInit }        from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 import { Country } from './country';
+import { State } from './state';
+import { City } from './city';
 import { CreateProfileService } from './createprofile-fields.service';
 //import { Hero }        from './hero';
 //import { HeroService } from './hero.service';
@@ -12,24 +14,39 @@ import { CreateProfileService } from './createprofile-fields.service';
   templateUrl: './createprofile-fields.component.html'
 })
 export class CreateProfileFieldsComponent {
+  selectedCountryDD: Country;
   resultCountries: Array<Country>;
-
-  constructor(private _countryService: CreateProfileService,
+  resultStates: Array<State>;
+  resultCities: Array<City>;
+  constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-   this._countryService.getCountriesAll().subscribe(resultCountries => this.resultCountries = resultCountries);
-   		for (let i = 0; i < 4; i++) {
-			console.log("Country is-->"+this.resultCountries[i].lcCountryName);
-		}
+    this._profileService.getCountriesAll().subscribe
+    (resultCountries => this.resultCountries = resultCountries);
   }
 
-  save(): void {
-   /* this.heroService.update(this.hero)
-      .then(() => this.goBack());*/
+	public processCountrySelection(e: any): void {
+		console.log(`Selected value: ` + e.lcCountryName);
+		//this.selectedCountryDD = e.lcCountryName;
+		this._profileService.getStatesForCountry(e.lcStateSelf+`/lcStates`).
+			subscribe(resultStates => this.resultStates = resultStates);
   }
+    
+	public processStateSelection(e: any): void {
+		console.log(`Selected value: ` + e.lcStateName);
+		//this.selectedCountryDD = e.lcCountryName;
+		this._profileService.getCitiesForState(e.lcCitySelf+`/lcCities`).
+			subscribe(resultCities => this.resultCities = resultCities);
+  }
+ 
+	public processCitySelection(e: any): void {
+		console.log(`Selected City value: ` + e.lcCityName);
+		//this.selectedCountryDD = e.lcCountryName;
+  }
+
 
   goBack(): void {
     this.location.back();
