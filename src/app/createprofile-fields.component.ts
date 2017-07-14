@@ -7,8 +7,6 @@ import { Country } from './country';
 import { State } from './state';
 import { City } from './city';
 import { CreateProfileService } from './createprofile-fields.service';
-//import { Hero }        from './hero';
-//import { HeroService } from './hero.service';
 
 @Component({
   templateUrl: './createprofile-fields.component.html'
