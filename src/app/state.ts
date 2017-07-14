@@ -1,4 +1,4 @@
-export class State {
+export class State { 
     lcStateName: string;
     lcCitySelf: string;
 }
