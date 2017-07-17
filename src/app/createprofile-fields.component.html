@@ -14,7 +14,8 @@
 					<div class="row">
 						<div class="input-field col s12 m6">
 							<input type="text" name="email" class="validate"   required />
-							<label  data-error="Please enter professional title">Professional Title</label>
+							<label  data-error="Please enter professional title" 
+							[(ngModel)]="profile.professionalTitle">Professional Title</label>
 							<span> </span>
 						</div>
 						<div class="input-field col s12 m6">
@@ -147,7 +148,7 @@
 				<div class="col l2 hide-on-med-and-down"></div>
 				<div class="col s12 l8 right-align">
 					<a href="#" class="btn btn-tertiary waves-effect close-modal">Cancel</a>
-					<input type="submit" class="btn btn-primary waves-effect" value="Create" />
+					<input type="submit" (click)="saveProfile()" class="btn btn-primary waves-effect" value="Create" />
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
