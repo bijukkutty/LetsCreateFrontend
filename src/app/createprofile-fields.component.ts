@@ -6,6 +6,7 @@ import { Location }                 from '@angular/common';
 import { Country } from './country';
 import { State } from './state';
 import { City } from './city';
+import { Profile } from './profile';
 import { CreateProfileService } from './createprofile-fields.service';
 
 @Component({
@@ -13,9 +14,11 @@ import { CreateProfileService } from './createprofile-fields.service';
 })
 export class CreateProfileFieldsComponent {
   selectedCountryDD: Country;
+  profile: Profile;
   resultCountries: Array<Country>;
   resultStates: Array<State>;
   resultCities: Array<City>;
+  addProfileResponse: String;
   constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
     private location: Location
@@ -40,6 +43,13 @@ export class CreateProfileFieldsComponent {
 			subscribe(resultCities => this.resultCities = resultCities);
   }
  
+ public saveProfile(e: any): void {
+		console.log(`Selected value Profile: `);
+		//this.selectedCountryDD = e.lcCountryName;
+		this._profileService.addProfile(this.profile).
+			subscribe(addProfileResponse => this.addProfileResponse = addProfileResponse);
+      console.log (this.addProfileResponse );
+  }
 	public processCitySelection(e: any): void {
 		console.log(`Selected City value: ` + e.lcCityName);
 		//this.selectedCountryDD = e.lcCountryName;
