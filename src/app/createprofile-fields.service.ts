@@ -41,12 +41,12 @@ export class CreateProfileService {
     headers.append('Accept', 'application/json');
     return headers;
   }
-    addProduct(profile: Profile) {                
+    addProfile(profile: Profile) {                
         let body = JSON.stringify(profile);            
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(`${this.baseUrl}/profileSave`, body, options)
+        console.log(body);
+        return this.http.post(`${this.baseUrl}/saveprofile`, body, options)
             .map(this.extractData)
             .catch(handleError);
     }
