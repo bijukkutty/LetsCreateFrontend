@@ -13,14 +13,18 @@
 					<p>Personal</p>
 					<div class="row">
 						<div class="input-field col s12 m6">
-							<input type="text" name="email" class="validate"   required />
-							<label  data-error="Please enter professional title" 
-							[(ngModel)]="profile.professionalTitle">Professional Title</label>
+							<input type="text" [(ngModel)]="profile.professionalTitle" name="email" class="validate"   required />
+							<label  data-error="Please enter professional title">Professional Title</label>
 							<span> </span>
 						</div>
 						<div class="input-field col s12 m6">
-							<input type="text" name="location" class="validate"   required />
-							<label  data-error="Please enter valid Location">Location</label>
+							<input type="text" [(ngModel)]="profile.yourStatement" name="location" class="validate"   required />
+							<label  data-error="Please enter valid Location">Your Statement</label>
+							<span> </span>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" [(ngModel)]="profile.aboutYou" name="location" class="validate"   required />
+							<label  data-error="Please enter valid Location">About You</label>
 							<span> </span>
 						</div>
 <!-- 						<div class="input-field col s12">

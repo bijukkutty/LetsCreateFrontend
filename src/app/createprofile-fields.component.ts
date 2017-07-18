@@ -14,7 +14,10 @@ import { CreateProfileService } from './createprofile-fields.service';
 })
 export class CreateProfileFieldsComponent {
   selectedCountryDD: Country;
-  profile= new Profile('','','',undefined,undefined,undefined);
+  country: Country;
+  //profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country : { "lcCountryId" : 1}};
+  /* profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country:undefined}; */
+  
   resultCountries: Array<Country>;
   resultStates: Array<State>;
   resultCities: Array<City>;
