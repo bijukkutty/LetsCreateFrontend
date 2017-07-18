@@ -8,7 +8,7 @@ import { State } from './state';
 import { City } from './city';
 import { Profile } from './profile';
 import { CreateProfileService } from './createprofile-fields.service';
-
+declare var $: any;
 @Component({
   templateUrl: './createprofile-fields.component.html'
 })
@@ -16,7 +16,6 @@ export class CreateProfileFieldsComponent {
   selectedCountryDD: Country;
   country: Country;
   //profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country : { "lcCountryId" : 1}};
-  /* profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country:undefined}; */
   
   resultCountries: Array<Country>;
   resultStates: Array<State>;
@@ -30,6 +29,14 @@ export class CreateProfileFieldsComponent {
   ngOnInit(): void {
     this._profileService.getCountriesAll().subscribe
     (resultCountries => this.resultCountries = resultCountries);
+$(document).ready(function(){
+	$('.masonry').masonry({
+		// options
+		itemSelector : '.item'
+	});
+	$('select').material_select();
+});
+    
   }
 
 	public processCountrySelection(e: any): void {
@@ -49,9 +56,9 @@ export class CreateProfileFieldsComponent {
   public saveProfile(): void {
 		//console.log(`Entered saveProfile`+this.profile.professionalTitle);
 		//this.selectedCountryDD = e.lcCountryName;
-		this._profileService.addProfile(this.profile).
+		/*this._profileService.addProfile(this.profile).
 			subscribe(addProfileResponse => this.addProfileResponse = addProfileResponse);
-      console.log (this.addProfileResponse );
+      console.log (this.addProfileResponse );*/
   } 
 
 	public processCitySelection(e: any): void {
