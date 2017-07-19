@@ -15,19 +15,22 @@ import { LcSocial } from './profile';
 import { LcProfileContibsXref } from './profile';
 import { CreateProfileService } from './createprofile-fields.service';
 
+import 'rxjs/add/operator/first'
+declare var $: any;
+
 @Component({
   templateUrl: './createprofile-fields.component.html'
 })
 export class CreateProfileFieldsComponent {
   selectedCountryDD: Country;
+  selectedStateDD: State;
+  selectedCityDD: City;
   lccountry: LcCountry = new LcCountry();
   lcstate: LcState = new LcState();
   lccity: LcCity = new LcCity();
   arrlcportfolio: Array<LcPortfolio> = new Array<LcPortfolio>();
   arrlcsocial: Array<LcSocial> = new Array<LcSocial>();
   arrlcProfileContibsXref: Array<LcProfileContibsXref> = new Array<LcProfileContibsXref>();
-  //profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country : { "lcCountryId" : 1}};
-  /* profile: Profile = {professionalTitle:"Pt1",yourStatement:"Ys1",aboutYou:"Ay1", country:undefined}; */
   profileRootObject: ProfileRootObject = new ProfileRootObject();
   resultCountries: Array<Country>;
   resultStates: Array<State>;
@@ -46,12 +49,27 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcSocials=this.arrlcsocial;
     this.profileRootObject.lcProfileContibsXrefs=this.arrlcProfileContibsXref;
     this._profileService.getCountriesAll().subscribe
-    (resultCountries => this.resultCountries = resultCountries);
+    (resultCountries => {this.resultCountries = resultCountries;
+        this.selectedCountryDD = this.resultCountries[1];
+          //this.callMasonrySelect();
+    });
+
   }
+
+   public callMasonrySelect():void{
+    $(document).ready(function(){
+    $('.masonry').masonry({
+      // options
+      itemSelector : '.item'
+    });
+      $('select').material_select();
+    });
+  } 
 
 	public processCountrySelection(e: any): void {
     this.profileRootObject.lcCountry.lcCountryId=e.lcCountryId; 
-		console.log(`Selected value: ` + e.lcCountryName);
+    console.log(`Selected value: ` + e.lcCountryName);
+    this.selectedCountryDD = e;
 		this._profileService.getStatesForCountry(e.lcStateSelf+`/lcStates`).
 			subscribe(resultStates => this.resultStates = resultStates);
   }
@@ -62,6 +80,11 @@ export class CreateProfileFieldsComponent {
 		this._profileService.getCitiesForState(e.lcCitySelf+`/lcCities`).
 			subscribe(resultCities => this.resultCities = resultCities);
   }
+
+	public processCitySelection(e: any): void {
+    this.profileRootObject.lcCity.lcCityId=e.lcCityId; 
+		console.log(`Selected City value: ` + e.lcCityName);
+  }
  
   public saveProfile(): void {
 		this._profileService.addProfile(this.profileRootObject).
@@ -69,13 +92,4 @@ export class CreateProfileFieldsComponent {
       console.log (this.addProfileResponse );
   } 
 
-	public processCitySelection(e: any): void {
-    this.profileRootObject.lcCity.lcCityId=e.lcCityId; 
-		console.log(`Selected City value: ` + e.lcCityName);
-  }
-
-
-  goBack(): void {
-    this.location.back();
-  }
 }
