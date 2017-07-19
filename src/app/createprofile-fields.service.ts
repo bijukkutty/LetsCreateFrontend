@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Country } from './country';
 import { State } from './state';
 import { City } from './city';
-import {Profile} from './profile';
+import {ProfileRootObject} from './profile';
 
 @Injectable()
 export class CreateProfileService {
@@ -41,7 +41,7 @@ export class CreateProfileService {
     headers.append('Accept', 'application/json');
     return headers;
   }
-    addProfile(profile: Profile) {                
+    addProfile(profile: ProfileRootObject) {                
         let body = JSON.stringify(profile);            
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -76,7 +76,10 @@ function mapCountries(response:Response): Country[] {
 }
 
 function toCountry(r:any): Country {
+  var n = r._links.self.href.lastIndexOf('/');
+  var countryId = r._links.self.href.substring(n + 1);
   let country = <Country>({
+    lcCountryId: countryId,
     lcCountryName: r.lcCountryName,
     lcStateSelf: r._links.self.href
   });
@@ -92,7 +95,10 @@ function mapStates(response:Response): State[] {
 }
 
 function toState(r:any): State {
+  var n = r._links.self.href.lastIndexOf('/');
+  var stateId = r._links.self.href.substring(n + 1);
   let state = <State>({
+    lcStateId: stateId,
     lcStateName: r.lcStateName,
     lcCitySelf: r._links.self.href
   });
@@ -108,7 +114,10 @@ function mapCities(response:Response): City[] {
 }
 
 function toCity(r:any): City {
+  var n = r._links.self.href.lastIndexOf('/');
+  var cityId = r._links.self.href.substring(n + 1);
   let city = <City>({
+    lcCityId: cityId,
     lcCityName: r.lcCityName,
     lcCitySelf: r._links.self.href
   });
