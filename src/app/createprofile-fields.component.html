@@ -1,161 +1,191 @@
-<!-- create Profile Test from Biju -->
-<!-- <div class="custom-Modal" id="createProfile">
+
+		
+<!-- create Profile Modal -->
+<div class="custom-Modal" id="createProfile">
 	<div class="costom-modal-header">
 		<a href="#" class="close-modal"><i class="material-icons">close</i></a>
-	</div> -->
-	
-	<form  name="userForm" >
+	</div>
+	<form name="userForm">
 		<div class="costom-modal-content">
 			<div class="row">
-				 <div class="col l2 hide-on-med-and-down"></div> 
+				<div class="col l2 hide-on-med-and-down"></div>
 				<div class="col s12 l8">
 					<h1>My Profile</h1>
 					<p>Personal</p>
 					<div class="row">
 						<div class="input-field col s12 m6">
-							<input type="text" [(ngModel)]="profile.professionalTitle" name="email" class="validate"   required />
-							<label  data-error="Please enter professional title">Professional Title</label>
-							<span> </span>
+							<input type="text" name="email" class="validate" />
+							<label>Professional Title</label>
 						</div>
 						<div class="input-field col s12 m6">
-							<input type="text" [(ngModel)]="profile.yourStatement" name="location" class="validate"   required />
-							<label  data-error="Please enter valid Location">Your Statement</label>
-							<span> </span>
+							<input type="text" name="statement" class="validate"/>
+							<label>Your Statement</label>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" [(ngModel)]="profile.aboutYou" name="location" class="validate"   required />
-							<label  data-error="Please enter valid Location">About You</label>
-							<span> </span>
+						<div class="input-field col s12">
+							<textarea class="materialize-textarea"></textarea>
+							<label>Tell us about yourself</label>
 						</div>
-<!-- 						<div class="input-field col s12">
-							<input type="text" name="aboutme" class="validate" required />
-							<label  data-error="Please enter about yourself">Location1</label>
-							<span></span>
-						</div> -->
-											
-
-<!-- 						<div class="input-field col s12">
-							<select *ngFor="let country of resultCountries">
-								 <option value="" disabled selected>Country</option>
-								<option value="1">{{country.lcCountryName}}}</option>
+						<div class="input-field col s12">
+							<select>
+								<option value="1">India</option>
+								<option value="2">USA</option>
+								<option value="3">China</option>
 							</select>
-						</div> -->
-					</div>
-					<div class="row">
-						<div class="btn-group" dropdown>
-							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
-								Select Country <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-								<li *ngFor="let country of resultCountries">
-									<a class="dropdown-item" (click)="processCountrySelection(country)">
-										{{country.lcCountryName}}</a>
-								</li>
-							</ul>
+							<label>Country</label>
+						</div>
+						<div class="input-field col s12">
+							<select>
+								<option value="1">Karnataka</option>
+								<option value="2">Kerala</option>
+								<option value="3">Tamilnadu</option>
+							</select>
+							<label>State/Province</label>
+						</div>
+						<div class="input-field col s12">
+							<select>
+								<option value="1">Bangalore</option>
+								<option value="2">Thiruvanathapuram</option>
+								<option value="3">Chennai</option>
+							</select>
+							<label>City</label>
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="btn-group" dropdown>
-							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
-								Select State <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-								<li *ngFor="let state of resultStates">
-									<a class="dropdown-item" (click)="processStateSelection(state)">
-										{{state.lcStateName}}</a>
-								</li>
-							</ul>
+					<p>I Can Contribute in</p>
+						<div class="row">
+							<div class="col s12">
+								<a href="#!" class="btn btn-flat">Clear All</a>
+								<a href="#!" class="btn btn-flat">Save</a>
+							</div>
 						</div>
-					</div>
-
-					<div class="row">
-						<div class="btn-group" dropdown>
-							<button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">
-								Select City <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-								<li *ngFor="let city of resultCities">
-									<a class="dropdown-item" (click)="processCitySelection(city)">
-										{{city.lcCityName}}</a>
-								</li>
-							</ul>
+						<div class="row">
+							<div class="col s3">
+								<p>Visual Arts</p>
+								<div>
+									<input type="checkbox" id="painting" />
+									<label for="painting">Painting</label>
+								</div>
+								<div>
+									<input type="checkbox" id="illustration" />
+									<label for="illustration">Illustration</label>
+								</div>
+							</div>
+							<div class="col s3">
+								<p>Design</p>
+								<div>
+									<input type="checkbox" id="graphic" />
+									<label for="graphic">Graphic</label>
+								</div>
+								<div>
+									<input type="checkbox" id="fashion" />
+									<label for="fashion">Fashion</label>
+								</div>
+							</div>
+							<div class="col s3">
+								<p>Literary Arts</p>
+								<div>
+									<input type="checkbox" id="writing" />
+									<label for="writing">Writing</label>
+								</div>
+								<div>
+									<input type="checkbox" id="cwriting" />
+									<label for="cwriting">CopyWriting</label>
+								</div>
+							</div>
+							<div class="col s3">
+								<p>Performing Arts</p>
+								<div>
+									<input type="checkbox" id="music" />
+									<label for="music">Music</label>
+								</div>
+								<div>
+									<input type="checkbox" id="dance" />
+									<label for="dance">Dance</label>
+								</div>
+							</div>
 						</div>
-					</div>
-					
-					<p>Expertise</p>
-					<div class="row" >
-						<!--<div class="input-field col s12 m3 {{x.checked}}" ng-repeat="x in expertise">-->
-							<!--<input type="checkbox" id="{{x.id}}"  class="filled-in" />-->
-							<!--<label for="{{x.id}}">{{x.name}}</label>-->
-						</div>	
+					<p>My Interests</p>
+					<div class="row">
 						<div class="col s12">
-							<input type="text" id="addNewExp" />
-							<label for="addNewExp">Add new expertise</label>
-						</div>
-						<div class="col s12">
-							<input type="checkbox" id="acceptExp" class="filled-in" />
-							<label for="acceptExp">Yes I would like to contribute my skills for any project?</label>
+							<button class="btn btn-flat choose">Choose</button>
 						</div>
 					</div>
 					<p>Portfolio</p>
 					<div class="row">
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioYoutube" />
-							<label for="portfolioYoutube">Youtube</label>
+						<div class="col s6">
+							<div class="row">
+								<div class="input-field col s3">
+									<select>
+										<option value="1" selected>Youtube</option>
+										<option value="2">Instagram</option>
+										<option value="3">LinkedIn</option>
+									</select>
+								</div>
+								<div class="input-field col s9">
+									<input type="text" class="portfolio" />
+								</div>
+							</div>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioBehance" />
-							<label for="portfolioBehance">Behance</label>
+						<div class="col s6">
+							<div class="row">
+								<div class="input-field col s3">
+									<select>
+										<option value="1" selected>Youtube</option>
+										<option value="2">Instagram</option>
+										<option value="3">LinkedIn</option>
+									</select>
+								</div>
+								<div class="input-field col s9">
+									<input type="text" class="portfolio" />
+								</div>
+							</div>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioInstagram" />
-							<label for="portfolioInstagram">Instagram</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioVimeo" />
-							<label for="portfolioVimeo">Vimeo</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioWebsite" />
-							<label for="portfolioWebsite">Personal Website</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<a href="#" class="btn btn-flat waves-effect">Add More</a>
-						</div>
-						
+						<button class="btn btn-flat">Add More</button>
 					</div>
-					<p>Portfolio</p>
+					<p>Social</p>
 					<div class="row">
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialFb" />
-							<label for="socialFb">Facebook</label>
+						<div class="col s6">
+							<div class="row">
+								<div class="input-field col s3">
+									<select>
+										<option value="1" selected>Youtube</option>
+										<option value="2">Instagram</option>
+										<option value="3">LinkedIn</option>
+									</select>
+								</div>
+								<div class="input-field col s9">
+									<input type="text" class="portfolio" />
+								</div>
+							</div>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialLinkedIn" />
-							<label for="socialLinkedIn">LinkedIn</label>
+						<div class="col s6">
+							<div class="row">
+								<div class="input-field col s3">
+									<select>
+										<option value="1" selected>LinkedIn</option>
+										<option value="2">Instagram</option>
+										<option value="3">Youtube</option>
+									</select>
+								</div>
+								<div class="input-field col s9">
+									<input type="text" class="portfolio" />
+								</div>
+							</div>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialTwitter" />
-							<label for="socialTwitter">Twitter</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<a href="#" class="btn btn-flat waves-effect">Add More</a>
-						</div>
+						<button class="btn btn-flat">Add More</button>
 					</div>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
-			
+			</div>		
 		</div>
 		<div class="custom-modal-footer">
 			<div class="row">
 				<div class="col l2 hide-on-med-and-down"></div>
 				<div class="col s12 l8 right-align">
-					<a href="#" class="btn btn-tertiary waves-effect close-modal">Cancel</a>
-					<input type="submit" (click)="saveProfile()" class="btn btn-primary waves-effect" value="Create" />
+					<button class="btn btn-flat">Save</button>
+					<button class="btn">Save & Close</button>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
 		</div>
 	</form>
-<!-- </div> -->
+</div>
