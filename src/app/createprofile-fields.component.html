@@ -1,8 +1,4 @@
 <div class="custom-Modal" id="createProfile">
-	<div class="costom-modal-header">
-		<a href="#" class="close-modal"><i class="material-icons">close</i></a>
-	</div>
-	<form name="userForm">
 		<div class="costom-modal-content">
 			<div class="row">
 				<div class="col l2 hide-on-med-and-down"></div>
@@ -22,13 +18,6 @@
 							<textarea name="aboutU" [(ngModel)]="profileRootObject.lcProfileTellAbtYrself" class="materialize-textarea"></textarea>
 							<label>Tell us about yourself</label>
 						</div>
-						<!-- <div class="input-field col s12 m4">
-							<select class="browser-default">
-								<option *ngFor="let country of resultCountries"
-								(change)="processCountrySelection(country)"
-								value="{{country.lcCountryName}}">{{country.lcCountryName}}</option>
-							</select>
-						</div> -->
 						<div class="input-field col s12 m4">
 							<select class="browser-default" [(ngModel)]="selectedCountryDD"
 							(ngModelChange)="processCountrySelection($event)" name="countryName">
@@ -112,67 +101,45 @@
 					</div>
 					<p>Portfolio</p>
 					<div class="row">
-						<div class="col s6">
+						<div class="col s6" *ngFor="let lcportfolio of arrlcportfolio; let i = index">
 							<div class="row">
 								<div class="input-field col s3">
-									<select>
+									<select class="browser-default" 
+										[(ngModel)]="lcportfolio.lcPortfolioKey" name="lcPortfolioKey">
 										<option value="1" selected>Youtube</option>
 										<option value="2">Instagram</option>
 										<option value="3">LinkedIn</option>
 									</select>
 								</div>
 								<div class="input-field col s9">
-									<input type="text" class="portfolio" />
+									<input type="text" class="portfolio" 
+									 type="text" class="portfolio" 
+										[(ngModel)]="lcportfolio.lcPortfolioValue" name="lcPortfolioValue"/>
 								</div>
 							</div>
 						</div>
-						<div class="col s6">
-							<div class="row">
-								<div class="input-field col s3">
-									<select>
-										<option value="1" selected>Youtube</option>
-										<option value="2">Instagram</option>
-										<option value="3">LinkedIn</option>
-									</select>
-								</div>
-								<div class="input-field col s9">
-									<input type="text" class="portfolio" />
-								</div>
-							</div>
-						</div>
-						<button class="btn btn-flat">Add More</button>
+						<button class="btn btn-flat" (click) = "addMorePortfolio()">Add More</button>
 					</div>
 					<p>Social</p>
 					<div class="row">
-						<div class="col s6">
+						<div class="col s6" *ngFor="let lcsocial of arrlcsocial; let i = index">
 							<div class="row">
 								<div class="input-field col s3">
-									<select>
+									<select class="browser-default" 
+										[(ngModel)]="lcsocial.lcSocialKey" name="lcSocialKey">
 										<option value="1" selected>Youtube</option>
 										<option value="2">Instagram</option>
 										<option value="3">LinkedIn</option>
 									</select>
 								</div>
 								<div class="input-field col s9">
-									<input type="text" class="portfolio" />
+									<input type="text" class="portfolio" 
+									 type="text" class="portfolio" 
+										[(ngModel)]="lcsocial.lcSocialValue" name="lcSocialValue"/>
 								</div>
 							</div>
 						</div>
-						<div class="col s6">
-							<div class="row">
-								<div class="input-field col s3">
-									<select>
-										<option value="1" selected>LinkedIn</option>
-										<option value="2">Instagram</option>
-										<option value="3">Youtube</option>
-									</select>
-								</div>
-								<div class="input-field col s9">
-									<input type="text" class="portfolio" />
-								</div>
-							</div>
-						</div>
-						<button class="btn btn-flat">Add More</button>
+						<button class="btn btn-flat" (click) = "addMoreSocial()">Add More</button>
 					</div>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
@@ -188,5 +155,4 @@
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
 		</div>
-	</form>
 </div>
