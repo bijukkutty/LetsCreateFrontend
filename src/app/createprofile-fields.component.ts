@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 
-import { Component, OnInit }        from '@angular/core';
+import { Component, Input, OnInit }        from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 import { Country } from './country';
@@ -45,27 +45,20 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcCountry=this.lccountry;
     this.profileRootObject.lcState=this.lcstate;
     this.profileRootObject.lcCity=this.lccity;
+    //this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
+    this.arrlcportfolio = [{lcPortfolioKey: 'steak-0', lcPortfolioValue: 'port1'},
+    {lcPortfolioKey: 'pizza-1', lcPortfolioValue: 'port2'}];
+    this.arrlcsocial = [{lcSocialKey: 'steak-0', lcSocialValue: 'social1'},
+    {lcSocialKey: 'pizza-1', lcSocialValue: 'social2'}];
     this.profileRootObject.lcPortfolios=this.arrlcportfolio;
     this.profileRootObject.lcSocials=this.arrlcsocial;
     this.profileRootObject.lcProfileContibsXrefs=this.arrlcProfileContibsXref;
     this._profileService.getCountriesAll().subscribe
     (resultCountries => {this.resultCountries = resultCountries;
         this.selectedCountryDD = this.resultCountries[1];
-          //this.callMasonrySelect();
     });
 
   }
-
-   public callMasonrySelect():void{
-    $(document).ready(function(){
-    $('.masonry').masonry({
-      // options
-      itemSelector : '.item'
-    });
-      $('select').material_select();
-    });
-  } 
-
 	public processCountrySelection(e: any): void {
     this.profileRootObject.lcCountry.lcCountryId=e.lcCountryId; 
     console.log(`Selected value: ` + e.lcCountryName);
@@ -92,4 +85,11 @@ export class CreateProfileFieldsComponent {
       console.log (this.addProfileResponse );
   } 
 
+  public addMorePortfolio(){
+    this.arrlcportfolio.push(new LcPortfolio(), new LcPortfolio());
+  }
+
+  public addMoreSocial(){
+    this.arrlcsocial.push(new LcSocial(), new LcSocial());
+  }
 }
