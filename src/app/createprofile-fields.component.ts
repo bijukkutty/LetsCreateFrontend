@@ -13,6 +13,8 @@ import { LcCity } from './profile';
 import { LcPortfolio } from './profile';
 import { LcSocial } from './profile';
 import { LcProfileContibsXref } from './profile';
+import { LcSubCategory } from './profile';
+import { CategoriesResponse } from './CategoriesResponse';
 import { CreateProfileService } from './createprofile-fields.service';
 
 import 'rxjs/add/operator/first'
@@ -30,12 +32,15 @@ export class CreateProfileFieldsComponent {
   lccity: LcCity = new LcCity();
   arrlcportfolio: Array<LcPortfolio> = new Array<LcPortfolio>();
   arrlcsocial: Array<LcSocial> = new Array<LcSocial>();
+  lcSubCategory: LcSubCategory;
+  lcProfileContibsXref: LcProfileContibsXref;
   arrlcProfileContibsXref: Array<LcProfileContibsXref> = new Array<LcProfileContibsXref>();
   profileRootObject: ProfileRootObject = new ProfileRootObject();
   resultCountries: Array<Country>;
   resultStates: Array<State>;
   resultCities: Array<City>;
   addProfileResponse: String;
+  arrCategoriesResponse: Array<CategoriesResponse>;
   constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
     private location: Location
@@ -57,7 +62,10 @@ export class CreateProfileFieldsComponent {
     (resultCountries => {this.resultCountries = resultCountries;
         this.selectedCountryDD = this.resultCountries[1];
     });
-
+  this._profileService.getCatAndSubCat().subscribe
+    (arrCategoriesResponse => {this.arrCategoriesResponse = arrCategoriesResponse.categoriesResponse;
+        console.log(this.arrCategoriesResponse);
+    });
   }
 	public processCountrySelection(e: any): void {
     this.profileRootObject.lcCountry.lcCountryId=e.lcCountryId; 
@@ -80,9 +88,22 @@ export class CreateProfileFieldsComponent {
   }
  
   public saveProfile(): void {
-		this._profileService.addProfile(this.profileRootObject).
+    console.log(this.arrCategoriesResponse);
+    for (let category of this.arrCategoriesResponse) {
+      for (let subcat of category.lcSubCategories) {
+         if(subcat.hasOwnProperty('checked')){
+            this.lcProfileContibsXref = new LcProfileContibsXref();
+            this.lcSubCategory = new LcSubCategory();
+            this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
+            this.lcProfileContibsXref.lcSubCategory = this.lcSubCategory;
+            this.arrlcProfileContibsXref.push(this.lcProfileContibsXref);
+        } 
+      } 
+    }
+    console.log (this.profileRootObject );
+		 this._profileService.addProfile(this.profileRootObject).
 			subscribe(addProfileResponse => this.addProfileResponse = addProfileResponse);
-      console.log (this.addProfileResponse );
+      console.log (this.addProfileResponse ); 
   } 
 
   public addMorePortfolio(){
@@ -92,4 +113,5 @@ export class CreateProfileFieldsComponent {
   public addMoreSocial(){
     this.arrlcsocial.push(new LcSocial(), new LcSocial());
   }
+  
 }
