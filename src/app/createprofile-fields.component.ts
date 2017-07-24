@@ -17,7 +17,7 @@ import { LcProfileInterestsXref } from './profile';
 import { LcSubCategory } from './profile';
 import { CategoriesResponse } from './CategoriesResponse';
 import { CreateProfileService } from './createprofile-fields.service';
-
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/first'
 declare var $: any;
 
@@ -46,7 +46,8 @@ export class CreateProfileFieldsComponent {
   arrCategoriesResponse: Array<CategoriesResponse>;
   constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -124,5 +125,8 @@ export class CreateProfileFieldsComponent {
   public addMoreSocial(){
     this.arrlcsocial.push(new LcSocial(), new LcSocial());
   }
-  
+
+  public goToProfileLanding(): void {
+	this.router.navigate(['./profile', 3]);
+}
 }

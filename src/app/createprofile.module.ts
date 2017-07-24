@@ -4,14 +4,17 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { MdSelectModule } from '@angular/material';
-import { CreateProfileService } from './createprofile-fields.service';
+import { CreateProfileService } from './createprofile-fields.service'
+import { ProfileService } from './profile.service';
 import { CreateProfileComponent } from './createprofile.component';
 import { CreateProfileFieldsComponent } from './createprofile-fields.component';
+import { ProfileLandingComponent } from './profilelanding.component';
 
 @NgModule({
   declarations: [
     CreateProfileComponent,
-    CreateProfileFieldsComponent
+    CreateProfileFieldsComponent,
+    ProfileLandingComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +23,6 @@ import { CreateProfileFieldsComponent } from './createprofile-fields.component';
     MaterialModule,
     MdSelectModule
   ],
-  providers: [CreateProfileService]
+  providers: [CreateProfileService, ProfileService]
 })
 export class CreateProfileModule { }

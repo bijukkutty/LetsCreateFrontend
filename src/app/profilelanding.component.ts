@@ -7,12 +7,12 @@ import { RootObject }        from './profileread';
 import { ProfileService } from './profile.service';
 
 @Component({
-  templateUrl: './profilephoto-upload.component.html'
+  templateUrl: './profilelanding.component.html'
 })
-export class ProfilePhotoUpload implements OnInit {
+export class ProfileLandingComponent implements OnInit {
   profile: RootObject;
 
-  constructor (
+  constructor(
     private profileService: ProfileService,
     private route: ActivatedRoute,
     private location: Location
@@ -23,9 +23,9 @@ export class ProfilePhotoUpload implements OnInit {
       .switchMap((params: ParamMap) => this.profileService.getProfile(+params.get('id')))
       .subscribe(profile => this.profile = profile);*/
 
-      //this.profileService.getProfile(3).subscribe(profile => {this.profile = profile; 
-     // console.log(this.profile.profileRootObject.lcProfileId);
-  //});
+      this.profileService.getProfile(3).subscribe(profile => {this.profile = profile; 
+      console.log(this.profile.profileRootObject.lcProfileId);
+  });
 
       //console.info("ProfileID---->", this.profile.profileRootObject.lcProfileId)
   }
