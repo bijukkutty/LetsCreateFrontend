@@ -13,6 +13,7 @@ import { LcCity } from './profile';
 import { LcPortfolio } from './profile';
 import { LcSocial } from './profile';
 import { LcProfileContibsXref } from './profile';
+import { LcProfileInterestsXref } from './profile';
 import { LcSubCategory } from './profile';
 import { CategoriesResponse } from './CategoriesResponse';
 import { CreateProfileService } from './createprofile-fields.service';
@@ -35,6 +36,8 @@ export class CreateProfileFieldsComponent {
   lcSubCategory: LcSubCategory;
   lcProfileContibsXref: LcProfileContibsXref;
   arrlcProfileContibsXref: Array<LcProfileContibsXref> = new Array<LcProfileContibsXref>();
+  lcProfileInterestsXref: LcProfileInterestsXref;
+  arrlcProfileInterestsXref: Array<LcProfileInterestsXref> = new Array<LcProfileInterestsXref>();
   profileRootObject: ProfileRootObject = new ProfileRootObject();
   resultCountries: Array<Country>;
   resultStates: Array<State>;
@@ -50,22 +53,23 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcCountry=this.lccountry;
     this.profileRootObject.lcState=this.lcstate;
     this.profileRootObject.lcCity=this.lccity;
-    //this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
-    this.arrlcportfolio = [{lcPortfolioKey: 'steak-0', lcPortfolioValue: 'port1'},
-    {lcPortfolioKey: 'pizza-1', lcPortfolioValue: 'port2'}];
-    this.arrlcsocial = [{lcSocialKey: 'steak-0', lcSocialValue: 'social1'},
-    {lcSocialKey: 'pizza-1', lcSocialValue: 'social2'}];
+    this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
+    /* this.arrlcportfolio = [{lcPortfolioKey: 'port-1', lcPortfolioValue: 'port1'},
+    {lcPortfolioKey: 'port-2', lcPortfolioValue: 'port2'}]; */
+    this.arrlcsocial = [{lcSocialKey: 'social-1', lcSocialValue: 'social1'},
+    {lcSocialKey: 'social-2', lcSocialValue: 'social2'}];
     this.profileRootObject.lcPortfolios=this.arrlcportfolio;
     this.profileRootObject.lcSocials=this.arrlcsocial;
     this.profileRootObject.lcProfileContibsXrefs=this.arrlcProfileContibsXref;
+    this.profileRootObject.lcProfileInterestsXrefs=this.arrlcProfileContibsXref;
     this._profileService.getCountriesAll().subscribe
     (resultCountries => {this.resultCountries = resultCountries;
         this.selectedCountryDD = this.resultCountries[1];
     });
-  this._profileService.getCatAndSubCat().subscribe
-    (arrCategoriesResponse => {this.arrCategoriesResponse = arrCategoriesResponse.categoriesResponse;
-        console.log(this.arrCategoriesResponse);
-    });
+    this._profileService.getCatAndSubCat().subscribe
+      (arrCategoriesResponse => {this.arrCategoriesResponse = arrCategoriesResponse.categoriesResponse;
+          console.log(this.arrCategoriesResponse);
+      });
   }
 	public processCountrySelection(e: any): void {
     this.profileRootObject.lcCountry.lcCountryId=e.lcCountryId; 
@@ -92,11 +96,18 @@ export class CreateProfileFieldsComponent {
     for (let category of this.arrCategoriesResponse) {
       for (let subcat of category.lcSubCategories) {
          if(subcat.hasOwnProperty('checked')){
+           //to persist contributions selections
             this.lcProfileContibsXref = new LcProfileContibsXref();
             this.lcSubCategory = new LcSubCategory();
             this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
             this.lcProfileContibsXref.lcSubCategory = this.lcSubCategory;
             this.arrlcProfileContibsXref.push(this.lcProfileContibsXref);
+            //to persist social selections
+            this.lcProfileInterestsXref = new LcProfileInterestsXref();
+            this.lcSubCategory = new LcSubCategory();
+            this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
+            this.lcProfileInterestsXref.lcSubCategory = this.lcSubCategory;
+            this.arrlcProfileInterestsXref.push(this.lcProfileInterestsXref);
         } 
       } 
     }

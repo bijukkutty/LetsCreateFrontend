@@ -36,6 +36,10 @@ export class LcProfileContibsXref {
     lcSubCategory: LcSubCategory;
 }
 
+export class LcProfileInterestsXref {
+    lcSubCategory: LcSubCategory;
+}
+
 export class ProfileRootObject {
     createDate?: any;
     createUser?: any;
@@ -52,5 +56,6 @@ export class ProfileRootObject {
     lcPortfolios: LcPortfolio[];
     lcSocials: LcSocial[];
     lcProfileContibsXrefs: LcProfileContibsXref[];
+    lcProfileInterestsXrefs: LcProfileInterestsXref[];
 }
 

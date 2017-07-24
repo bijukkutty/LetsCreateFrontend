@@ -53,18 +53,27 @@
 								<div *ngFor="let subcat of category.lcSubCategories">
 									  <input [(ngModel)]="subcat.checked" 
 									type="checkbox" id="{{subcat.lcSubCategoryId}}" />
-									<label for="{{subcat.lcSubCategoryId}}">{{subcat.lcSubCategoryName}}</label>  
-									<!--  <md-checkbox [(ngModel)]="checked">
-										{{subcat.lcSubCategoryName}}</md-checkbox>  -->
+									<label for="{{subcat.lcSubCategoryId}}">{{subcat.lcSubCategoryName}}</label>
 								</div>
 							</div>
 						</div>
 					<p>My Interests</p>
-					<div class="row">
-						<div class="col s12">
-							<button class="btn btn-flat choose">Choose</button>
+						<div class="row">
+							<div class="col s12">
+								<a href="#!" class="btn btn-flat">Clear All</a>
+								<a href="#!" class="btn btn-flat">Save</a>
+							</div>
 						</div>
-					</div>
+						<div class="row">
+							<div class="col s3" *ngFor="let category of arrCategoriesResponse">
+								<p>{{category.lcCategoryName}}</p>
+								<div *ngFor="let subcat of category.lcSubCategories">
+									  <input [(ngModel)]="subcat.checked" 
+									type="checkbox" id="{{subcat.lcSubCategoryId}}" />
+									<label for="{{subcat.lcSubCategoryId}}">{{subcat.lcSubCategoryName}}</label>
+								</div>
+							</div>
+						</div>
 					<p>Portfolio</p>
 					<div class="row">
 						<div class="col s6" *ngFor="let lcportfolio of arrlcportfolio; let i = index">
