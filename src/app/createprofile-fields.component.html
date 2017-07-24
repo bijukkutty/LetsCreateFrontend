@@ -65,12 +65,12 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col s3" *ngFor="let category of arrCategoriesResponse">
-								<p>{{category.lcCategoryName}}</p>
-								<div *ngFor="let subcat of category.lcSubCategories">
-									  <input [(ngModel)]="subcat.checked" 
-									type="checkbox" id="{{subcat.lcSubCategoryId}}" />
-									<label for="{{subcat.lcSubCategoryId}}">{{subcat.lcSubCategoryName}}</label>
+							<div class="col s3" *ngFor="let category1 of arrCategoriesInterestResponse let index=i">
+								<p>{{category1.lcCategoryName}}</p>
+								<div *ngFor="let subcat1 of category1.lcSubCategories">
+									  <input [(ngModel)]="subcat1.checked" 
+									type="checkbox" id="{{subcat1.lcSubCategoryId+9999}}" />
+									<label for="{{subcat1.lcSubCategoryId+9999}}">{{subcat1.lcSubCategoryName}}</label>
 								</div>
 							</div>
 						</div>
@@ -81,7 +81,8 @@
 								<div class="input-field col s3">
 									<select class="browser-default" 
 										[(ngModel)]="lcportfolio.lcPortfolioKey" name="lcPortfolioKey">
-										<option value="1" selected>Youtube</option>
+										<option value="0" selected>Please Select</option>
+										<option value="1">Youtube</option>
 										<option value="2">Instagram</option>
 										<option value="3">LinkedIn</option>
 									</select>
@@ -102,7 +103,8 @@
 								<div class="input-field col s3">
 									<select class="browser-default" 
 										[(ngModel)]="lcsocial.lcSocialKey" name="lcSocialKey">
-										<option value="1" selected>Youtube</option>
+										<option value="0" selected>Please Select</option>
+										<option value="1">Youtube</option>
 										<option value="2">Instagram</option>
 										<option value="3">LinkedIn</option>
 									</select>

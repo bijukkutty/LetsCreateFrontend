@@ -15,6 +15,7 @@ import { LcSocial } from './profile';
 import { LcProfileContibsXref } from './profile';
 import { LcProfileInterestsXref } from './profile';
 import { LcSubCategory } from './profile';
+import { CateogriesRootObject } from './CategoriesResponse';
 import { CategoriesResponse } from './CategoriesResponse';
 import { CreateProfileService } from './createprofile-fields.service';
 import { Router } from '@angular/router';
@@ -34,16 +35,19 @@ export class CreateProfileFieldsComponent {
   arrlcportfolio: Array<LcPortfolio> = new Array<LcPortfolio>();
   arrlcsocial: Array<LcSocial> = new Array<LcSocial>();
   lcSubCategory: LcSubCategory;
+  lcSubCategory1: LcSubCategory;
   lcProfileContibsXref: LcProfileContibsXref;
   arrlcProfileContibsXref: Array<LcProfileContibsXref> = new Array<LcProfileContibsXref>();
   lcProfileInterestsXref: LcProfileInterestsXref;
   arrlcProfileInterestsXref: Array<LcProfileInterestsXref> = new Array<LcProfileInterestsXref>();
   profileRootObject: ProfileRootObject = new ProfileRootObject();
+  arrCategResp: CateogriesRootObject = new CateogriesRootObject();
   resultCountries: Array<Country>;
   resultStates: Array<State>;
   resultCities: Array<City>;
   addProfileResponse: String;
   arrCategoriesResponse: Array<CategoriesResponse>;
+  arrCategoriesInterestResponse: Array<CategoriesResponse>;
   constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
     private location: Location,
@@ -62,14 +66,17 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcPortfolios=this.arrlcportfolio;
     this.profileRootObject.lcSocials=this.arrlcsocial;
     this.profileRootObject.lcProfileContibsXrefs=this.arrlcProfileContibsXref;
-    this.profileRootObject.lcProfileInterestsXrefs=this.arrlcProfileContibsXref;
+    this.profileRootObject.lcProfileInterestsXrefs=this.arrlcProfileInterestsXref;
     this._profileService.getCountriesAll().subscribe
     (resultCountries => {this.resultCountries = resultCountries;
         this.selectedCountryDD = this.resultCountries[1];
     });
     this._profileService.getCatAndSubCat().subscribe
-      (arrCategoriesResponse => {this.arrCategoriesResponse = arrCategoriesResponse.categoriesResponse;
-          console.log(this.arrCategoriesResponse);
+      (arrCategoriesResponse => {this.arrCategoriesResponse = 
+        arrCategoriesResponse.categoriesResponse;
+        // Deep copy
+          this.arrCategResp = $.extend(true, {}, arrCategoriesResponse);
+          this.arrCategoriesInterestResponse = this.arrCategResp.categoriesResponse;
       });
   }
 	public processCountrySelection(e: any): void {
@@ -103,11 +110,17 @@ export class CreateProfileFieldsComponent {
             this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
             this.lcProfileContibsXref.lcSubCategory = this.lcSubCategory;
             this.arrlcProfileContibsXref.push(this.lcProfileContibsXref);
+        } 
+      } 
+    }
+    for (let category1 of this.arrCategoriesInterestResponse) {
+      for (let subcat1 of category1.lcSubCategories) {
+         if(subcat1.hasOwnProperty('checked')){
             //to persist social selections
             this.lcProfileInterestsXref = new LcProfileInterestsXref();
-            this.lcSubCategory = new LcSubCategory();
-            this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
-            this.lcProfileInterestsXref.lcSubCategory = this.lcSubCategory;
+            this.lcSubCategory1 = new LcSubCategory();
+            this.lcSubCategory1.lcSubCategoryId = subcat1.lcSubCategoryId;
+            this.lcProfileInterestsXref.lcSubCategory = this.lcSubCategory1;
             this.arrlcProfileInterestsXref.push(this.lcProfileInterestsXref);
         } 
       } 
@@ -128,5 +141,5 @@ export class CreateProfileFieldsComponent {
 
   public goToProfileLanding(): void {
 	this.router.navigate(['./profile', 3]);
-}
+  }
 }
