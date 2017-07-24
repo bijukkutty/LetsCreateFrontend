@@ -8,10 +8,12 @@ import { Country } from './country';
 import { State } from './state';
 import { City } from './city';
 import {ProfileRootObject} from './profile';
+import {CateogriesRootObject} from './CategoriesResponse';
 
 @Injectable()
 export class CreateProfileService {
  private baseUrl: string = 'https://immense-caverns-35815.herokuapp.com';
+ catResp: CateogriesRootObject;
   constructor(private http : Http) {
   }
 
@@ -34,6 +36,14 @@ export class CreateProfileService {
       .get(url, {headers: this.getHeaders()})
       .map(mapCities).catch(handleError);
     return city$;
+  }
+
+  getCatAndSubCat(): Observable<CateogriesRootObject> {
+    
+    let cat$ = this.http
+      .get(`http://localhost:8080/findCatAndSubCat`, {headers: this.getHeaders()})
+      .map((catResp: Response) => catResp.json()).catch(handleError);
+    return cat$;
   }
 
     private getHeaders() {
@@ -124,3 +134,5 @@ function toCity(r:any): City {
   console.log('Parsed City:', city);
   return city;
 }
+
+

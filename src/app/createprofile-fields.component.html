@@ -48,48 +48,14 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col s3">
-								<p>Visual Arts</p>
-								<div>
-									<input type="checkbox" id="painting" />
-									<label for="painting">Painting</label>
-								</div>
-								<div>
-									<input type="checkbox" id="illustration" />
-									<label for="illustration">Illustration</label>
-								</div>
-							</div>
-							<div class="col s3">
-								<p>Design</p>
-								<div>
-									<input type="checkbox" id="graphic" />
-									<label for="graphic">Graphic</label>
-								</div>
-								<div>
-									<input type="checkbox" id="fashion" />
-									<label for="fashion">Fashion</label>
-								</div>
-							</div>
-							<div class="col s3">
-								<p>Literary Arts</p>
-								<div>
-									<input type="checkbox" id="writing" />
-									<label for="writing">Writing</label>
-								</div>
-								<div>
-									<input type="checkbox" id="cwriting" />
-									<label for="cwriting">CopyWriting</label>
-								</div>
-							</div>
-							<div class="col s3">
-								<p>Performing Arts</p>
-								<div>
-									<input type="checkbox" id="music" />
-									<label for="music">Music</label>
-								</div>
-								<div>
-									<input type="checkbox" id="dance" />
-									<label for="dance">Dance</label>
+							<div class="col s3" *ngFor="let category of arrCategoriesResponse">
+								<p>{{category.lcCategoryName}}</p>
+								<div *ngFor="let subcat of category.lcSubCategories">
+									  <input [(ngModel)]="subcat.checked" 
+									type="checkbox" id="{{subcat.lcSubCategoryId}}" />
+									<label for="{{subcat.lcSubCategoryId}}">{{subcat.lcSubCategoryName}}</label>  
+									<!--  <md-checkbox [(ngModel)]="checked">
+										{{subcat.lcSubCategoryName}}</md-checkbox>  -->
 								</div>
 							</div>
 						</div>
