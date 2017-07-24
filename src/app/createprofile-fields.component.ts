@@ -14,7 +14,7 @@ import { LcPortfolio } from './profile';
 import { LcSocial } from './profile';
 import { LcProfileContibsXref } from './profile';
 import { CreateProfileService } from './createprofile-fields.service';
-
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/first'
 declare var $: any;
 
@@ -38,7 +38,8 @@ export class CreateProfileFieldsComponent {
   addProfileResponse: String;
   constructor(private _profileService: CreateProfileService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -92,4 +93,8 @@ export class CreateProfileFieldsComponent {
   public addMoreSocial(){
     this.arrlcsocial.push(new LcSocial(), new LcSocial());
   }
+
+  public goToProfileLanding(): void {
+	this.router.navigate(['./profile', 3]);
+}
 }

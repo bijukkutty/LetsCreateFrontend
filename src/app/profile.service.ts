@@ -1,28 +1,43 @@
 import { Injectable } from '@angular/core';
-import {Headers, Http } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
 
-import { ProfileRootObject } from './profile';
+import { RootObject } from './profileread';
 
 @Injectable()
 export class ProfileService {
-
+    profileResp: RootObject;
     private headers = new Headers({'Content-Type': 'application/json'});
-    private profileUrl = 'https://immense-caverns-35815.herokuapp.com';
+    private profileUrl = 'http://immense-caverns-35815.herokuapp.com/findProfileById?user_id=3';
 
     constructor (private http: Http) { }
 
-    getProfile(id : number): Promise<ProfileRootObject> {
-        const url = '${this.profileUrl}/${id}';
-        return this.http.get(url)
-        .toPromise()
-        .then(response => response.json().data as ProfileRootObject)
-        .catch(this.handleError);
+    getProfile(id : number): Observable<RootObject> {
+        //string url = this.profileUrl;
+        //console.info("URL--->",url);
+     let prof$ = this.http.get('http://immense-caverns-35815.herokuapp.com/findProfileById?user_id=3', {headers: this.getHeaders()})
+        .map((profileResp: Response) => profileResp.json()).catch(handleError);
+
+        return prof$;
+        
+
+        
     }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  
+  private getHeaders() {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    return headers;
   }
 }
+function handleError(error: any) {
+    let errorMsg = error.message || `Yikes! There was was a problem with our hyperdrive device and we couldn't retrieve your data!`;
+  console.error(errorMsg);
+
+  // throw an application level error
+  return Observable.throw(errorMsg);
+  }

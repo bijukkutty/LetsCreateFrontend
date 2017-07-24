@@ -1,0 +1,129 @@
+<div *ngIf="profile">
+  <h2>{{profile.profileRootObject.lcProfileId}} details!</h2>
+ <!-- < <div>
+   label>id: </label>{{hero.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="hero.name" placeholder="name" />
+   </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div> -->
+
+
+  <body class="{{$location.path}}" ng-class="bodyClass">
+	<div ng-controller="IndexCtrl">
+		<header>
+			<nav role="navigation">
+				<div class="nav-wrapper container">
+				<a id="logo-container" href="#/" class="brand-logo circle"><img src="images/logo-lc-full.png"/></a>
+				<a id="logo-container" href="#!/s" class="brand-logo circle mobile"><img src="images/logo-tree-01.png"/></a>
+					<ul class="right">
+						<li><a class="search-open"><i class="material-icons">search</i></a></li>
+						<li><a href="#!"><i class="material-icons">brush</i></a></li>
+						<li><a href="#!"><i class="material-icons">notifications_none</i></a></li>
+						<li><a href="#!"><i class="material-icons">chat_bubble_outline</i></a></li>
+						<li class="menu"><span></span><span></span><span></span><span></span></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+
+<section class="section no-pad-bot" id="project">
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m4">
+				<div class="left-col profile">
+					<a class="right grey-text profile_edit editProfile-open"><i class="material-icons">edit</i></a>
+					<div class="profile-img">
+						<img src="/images/naveen.jpg"/>
+					</div>
+					<div>
+						<ul class="tabs">
+							<li class="tab col s12"><a class="active"  href="#summary">Summary</a></li>
+							<li class="tab col s12"><a href="#creation">Co Creators</a></li>
+							<li class="tab col s12"><a href="#connection">Connections</a></li>
+							<li class="tab col s12"><a href="#file">Files</a></li>
+							<li class="tab col s12"><a href="#account">Accont Settings</a></li>
+						</ul>
+						<div class="divider"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m8">
+				<div class="right-col profile">
+					<div id="summary">
+						<div class="row">
+							<div class="col s10">
+								<h1>Naveen</h1>
+								<p>Flute Artist | Bangalore</p>
+							</div>
+							<div class="col s2 right-align">
+								<div class="action_icons">
+									<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
+									<a href="#!" class="grey-text"><i class="material-icons">more_vert</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="row publishAlert">
+							<div class="col s8">
+								<p><i class="material-icons red-text left">error</i>Your profile has not been published yet. Verify your email to publish</p>
+							</div>
+							<div class="col s4 right-align">
+								<a class="btn btn-flat">Publish Now</a>
+							</div>
+						</div>
+						<div class="row quote">
+							<div class="col s12">
+								<p>"We need to feed our souls too"</p>
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col s12">
+								<a class="btn btn-primary project-open">Create Project</a>
+							</div>
+						</div> -->
+						<div class="profileContent">
+							<div class="row">
+								<div class="col s6">
+									<h4>COUNT ME IN FOR</h4>
+									<p>Painting, Sculpture</p>
+								</div>
+								<div class="col s6">
+									<h4>MY INTERESTS</h4>
+									<p>UX Design, Music, Writing</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>About</h4>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries..<a class="show_more">Show More</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>My Co-Creations</h4>
+									<p class="center">You have no co creations yet.<br/>
+									<a href="#!">Start a Project</a> and invite co creators or <a href="#!">Join One</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>Recommendations</h4>
+									<p class="center">You have no recommendations yet.<br/>
+									<a href="#!">Ask for Recommendations</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>My Connections</h4>
+									<p class="center">You have no connections yet.<br/>
+									<a href="#!">Start a Project</a> and invite co creators or <a href="#!">Join One</a><br/>
+									Your co creators will be your connections.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
