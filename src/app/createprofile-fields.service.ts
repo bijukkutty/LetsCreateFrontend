@@ -41,7 +41,7 @@ export class CreateProfileService {
   getCatAndSubCat(): Observable<CateogriesRootObject> {
     
     let cat$ = this.http
-      .get(`http://localhost:8080/findCatAndSubCat`, {headers: this.getHeaders()})
+      .get(`${this.baseUrl}/findCatAndSubCat`, {headers: this.getHeaders()})
       .map((catResp: Response) => catResp.json()).catch(handleError);
     return cat$;
   }
