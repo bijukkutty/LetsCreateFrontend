@@ -29,6 +29,7 @@ export class CreateProfileFieldsComponent {
   selectedCountryDD: Country;
   selectedStateDD: State;
   selectedCityDD: City;
+  arrPortSocOptions: Array<string> = ['Please Select','Youtube','Instagram','LinkedIn'];
   lccountry: LcCountry = new LcCountry();
   lcstate: LcState = new LcState();
   lccity: LcCity = new LcCity();
@@ -58,11 +59,8 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcCountry=this.lccountry;
     this.profileRootObject.lcState=this.lcstate;
     this.profileRootObject.lcCity=this.lccity;
-    //this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
-     this.arrlcportfolio = [{lcPortfolioKey: 'Please Select', lcPortfolioValue: ''},
-    {lcPortfolioKey: 'Please Select', lcPortfolioValue: ''}]; 
-    this.arrlcsocial = [{lcSocialKey: 'social-1', lcSocialValue: 'social1'},
-    {lcSocialKey: 'social-2', lcSocialValue: 'social2'}];
+    this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio()];
+    this.arrlcsocial = [new LcSocial(), new LcSocial()];
     this.profileRootObject.lcPortfolios=this.arrlcportfolio;
     this.profileRootObject.lcSocials=this.arrlcsocial;
     this.profileRootObject.lcProfileContibsXrefs=this.arrlcProfileContibsXref;

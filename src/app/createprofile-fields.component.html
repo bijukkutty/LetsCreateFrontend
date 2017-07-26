@@ -82,10 +82,8 @@
 								<div class="input-field col s3">
 									<select class="browser-default" 
 										[(ngModel)]="lcportfolio.lcPortfolioKey" name="lcPortfolioKey">
-										<option value="Please Select" selected>Please Select</option>
-										<option value="Youtube">Youtube</option>
-										<option value="Instagram">Instagram</option>
-										<option value="LinkedIn">LinkedIn</option>
+										<option *ngFor="let portOption of arrPortSocOptions"
+												[ngValue]="portOption">{{portOption}}</option>
 									</select>
 								</div>
 								<div class="input-field col s9">
@@ -104,10 +102,8 @@
 								<div class="input-field col s3">
 									<select class="browser-default" 
 										[(ngModel)]="lcsocial.lcSocialKey" name="lcSocialKey">
-										<option value="0" selected>Please Select</option>
-										<option value="1">Youtube</option>
-										<option value="2">Instagram</option>
-										<option value="3">LinkedIn</option>
+										<option *ngFor="let socOption of arrPortSocOptions"
+												[ngValue]="socOption">{{socOption}}</option>
 									</select>
 								</div>
 								<div class="input-field col s9">

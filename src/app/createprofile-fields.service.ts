@@ -56,7 +56,7 @@ export class CreateProfileService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         console.log(body);
-        return this.http.post(`${this.baseUrl}/saveprofile`, body, options)
+        return this.http.post(`http://localhost:8080/saveprofile`, body, options)
             .map(this.extractData)
             .catch(handleError);
     }
