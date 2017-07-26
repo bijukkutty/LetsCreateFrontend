@@ -22,7 +22,8 @@
 							<select class="browser-default" [(ngModel)]="selectedCountryDD"
 							(ngModelChange)="processCountrySelection($event)" name="countryName">
 								<option *ngFor="let country of resultCountries"
-								[ngValue]="country">{{country.lcCountryName}}</option>
+								[ngValue]="country">
+								{{country.lcCountryName}}</option>
 							</select>
 						</div>						
 						<div class="input-field col s12 m4">
@@ -81,10 +82,10 @@
 								<div class="input-field col s3">
 									<select class="browser-default" 
 										[(ngModel)]="lcportfolio.lcPortfolioKey" name="lcPortfolioKey">
-										<option value="0" selected>Please Select</option>
-										<option value="1">Youtube</option>
-										<option value="2">Instagram</option>
-										<option value="3">LinkedIn</option>
+										<option value="Please Select" selected>Please Select</option>
+										<option value="Youtube">Youtube</option>
+										<option value="Instagram">Instagram</option>
+										<option value="LinkedIn">LinkedIn</option>
 									</select>
 								</div>
 								<div class="input-field col s9">

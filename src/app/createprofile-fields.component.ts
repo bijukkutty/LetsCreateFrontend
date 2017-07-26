@@ -58,9 +58,9 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcCountry=this.lccountry;
     this.profileRootObject.lcState=this.lcstate;
     this.profileRootObject.lcCity=this.lccity;
-    this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
-    /* this.arrlcportfolio = [{lcPortfolioKey: 'port-1', lcPortfolioValue: 'port1'},
-    {lcPortfolioKey: 'port-2', lcPortfolioValue: 'port2'}]; */
+    //this.arrlcportfolio = [new LcPortfolio(), new LcPortfolio];
+     this.arrlcportfolio = [{lcPortfolioKey: 'Please Select', lcPortfolioValue: ''},
+    {lcPortfolioKey: 'Please Select', lcPortfolioValue: ''}]; 
     this.arrlcsocial = [{lcSocialKey: 'social-1', lcSocialValue: 'social1'},
     {lcSocialKey: 'social-2', lcSocialValue: 'social2'}];
     this.profileRootObject.lcPortfolios=this.arrlcportfolio;
@@ -69,7 +69,9 @@ export class CreateProfileFieldsComponent {
     this.profileRootObject.lcProfileInterestsXrefs=this.arrlcProfileInterestsXref;
     this._profileService.getCountriesAll().subscribe
     (resultCountries => {this.resultCountries = resultCountries;
-        this.selectedCountryDD = this.resultCountries[1];
+      this.resultCountries.splice(0,0,
+        {lcCountryName: 'Select Country', lcCountryId: 0, lcStateSelf: ''});
+        this.selectedCountryDD = this.resultCountries[0];
     });
     this._profileService.getCatAndSubCat().subscribe
       (arrCategoriesResponse => {this.arrCategoriesResponse = 
@@ -84,14 +86,26 @@ export class CreateProfileFieldsComponent {
     console.log(`Selected value: ` + e.lcCountryName);
     this.selectedCountryDD = e;
 		this._profileService.getStatesForCountry(e.lcStateSelf+`/lcStates`).
-			subscribe(resultStates => this.resultStates = resultStates);
+      subscribe(resultStates => {this.resultStates = resultStates;
+        this.resultStates.splice(0,0,
+        {lcStateName: 'Select State', lcStateId: 0, lcCitySelf: ''});
+        this.selectedStateDD = this.resultStates[0];
+        while(this.resultCities.length > 1) {
+            this.resultCities.pop();
+        }
+        this.selectedCityDD = this.resultCities[0];
+    });
   }
     
 	public processStateSelection(e: any): void {
     this.profileRootObject.lcState.lcStateId=e.lcStateId; 
 		console.log(`Selected value: ` + e.lcStateName);
 		this._profileService.getCitiesForState(e.lcCitySelf+`/lcCities`).
-			subscribe(resultCities => this.resultCities = resultCities);
+      subscribe(resultCities => {this.resultCities = resultCities;
+       this.resultCities.splice(0,0,
+        {lcCityName: 'Select City', lcCityId: 0, lcCitySelf: ''});
+        this.selectedCityDD = this.resultCities[0];
+      });
   }
 
 	public processCitySelection(e: any): void {
