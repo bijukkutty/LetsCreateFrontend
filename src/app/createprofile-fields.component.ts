@@ -115,7 +115,8 @@ export class CreateProfileFieldsComponent {
     console.log(this.arrCategoriesResponse);
     for (let category of this.arrCategoriesResponse) {
       for (let subcat of category.lcSubCategories) {
-         if(subcat.hasOwnProperty('checked')){
+         if(subcat.hasOwnProperty('checked') &&
+                  subcat.checked == true){
            //to persist contributions selections
             this.lcProfileContibsXref = new LcProfileContibsXref();
             this.lcSubCategory = new LcSubCategory();
@@ -127,7 +128,8 @@ export class CreateProfileFieldsComponent {
     }
     for (let category1 of this.arrCategoriesInterestResponse) {
       for (let subcat1 of category1.lcSubCategories) {
-         if(subcat1.hasOwnProperty('checked')){
+         if(subcat1.hasOwnProperty('checked') &&
+                  subcat1.checked == true){
             //to persist social selections
             this.lcProfileInterestsXref = new LcProfileInterestsXref();
             this.lcSubCategory1 = new LcSubCategory();
