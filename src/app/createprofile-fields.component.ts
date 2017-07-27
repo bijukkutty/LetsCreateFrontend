@@ -141,8 +141,8 @@ export class CreateProfileFieldsComponent {
     }
     console.log (this.profileRootObject );
 		 this._profileService.addProfile(this.profileRootObject).
-			subscribe(addProfileResponse => this.addProfileResponse = addProfileResponse);
-      console.log (this.addProfileResponse ); 
+			subscribe(addProfileResponse => {this.addProfileResponse = addProfileResponse;;
+      console.log ("Split string--->",this.addProfileResponse.split(":",2)[1]);}); 
   } 
 
   public addMorePortfolio(){
@@ -154,6 +154,40 @@ export class CreateProfileFieldsComponent {
   }
 
   public goToProfileLanding(): void {
-	this.router.navigate(['./profile', 3]);
+
+   console.log(this.arrCategoriesResponse);
+    for (let category of this.arrCategoriesResponse) {
+      for (let subcat of category.lcSubCategories) {
+         if(subcat.hasOwnProperty('checked') &&
+                  subcat.checked == true){
+           //to persist contributions selections
+            this.lcProfileContibsXref = new LcProfileContibsXref();
+            this.lcSubCategory = new LcSubCategory();
+            this.lcSubCategory.lcSubCategoryId = subcat.lcSubCategoryId;
+            this.lcProfileContibsXref.lcSubCategory = this.lcSubCategory;
+            this.arrlcProfileContibsXref.push(this.lcProfileContibsXref);
+        } 
+      } 
+    }
+    for (let category1 of this.arrCategoriesInterestResponse) {
+      for (let subcat1 of category1.lcSubCategories) {
+         if(subcat1.hasOwnProperty('checked') &&
+                  subcat1.checked == true){
+            //to persist social selections
+            this.lcProfileInterestsXref = new LcProfileInterestsXref();
+            this.lcSubCategory1 = new LcSubCategory();
+            this.lcSubCategory1.lcSubCategoryId = subcat1.lcSubCategoryId;
+            this.lcProfileInterestsXref.lcSubCategory = this.lcSubCategory1;
+            this.arrlcProfileInterestsXref.push(this.lcProfileInterestsXref);
+        } 
+      } 
+    }
+    console.log (this.profileRootObject );
+		 this._profileService.addProfile(this.profileRootObject).
+			subscribe(addProfileResponse => {this.addProfileResponse = addProfileResponse;
+        this.router.navigate(['./profile',this.addProfileResponse.split(":",2)[1]])});
+      console.log (this.addProfileResponse); 
+
+       
   }
 }

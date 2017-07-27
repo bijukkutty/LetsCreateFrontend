@@ -19,13 +19,15 @@ export class ProfileLandingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /*this.route.paramMap
+    this.route.paramMap
       .switchMap((params: ParamMap) => this.profileService.getProfile(+params.get('id')))
-      .subscribe(profile => this.profile = profile);*/
-
-      this.profileService.getProfile(3).subscribe(profile => {this.profile = profile; 
+      .subscribe(profile => {this.profile = profile; 
       console.log(this.profile.profileRootObject.lcProfileId);
   });
+
+      /*this.profileService.getProfile(3).subscribe(profile => {this.profile = profile; 
+      console.log(this.profile.profileRootObject.lcProfileId);
+  });*/
 
       //console.info("ProfileID---->", this.profile.profileRootObject.lcProfileId)
   }

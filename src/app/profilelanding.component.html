@@ -1,17 +1,5 @@
 <div *ngIf="profile">
-  <h2>{{profile.profileRootObject.lcProfileId}} details!</h2>
- <!-- < <div>
-   label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name" />
-   </div>
-  <button (click)="goBack()">Back</button>
-  <button (click)="save()">Save</button>
-</div> -->
 
-
-  <body class="{{$location.path}}" ng-class="bodyClass">
 	<div ng-controller="IndexCtrl">
 		<header>
 			<nav role="navigation">
@@ -56,8 +44,9 @@
 					<div id="summary">
 						<div class="row">
 							<div class="col s10">
-								<h1>Naveen</h1>
-								<p>Flute Artist | Bangalore</p>
+							<h1>Naveen</h1>
+								<p>{{profile.profileRootObject.lcProfileTitle}} | {{profile.profileLocationDtls.profileCityName}}</p>
+							
 							</div>
 							<div class="col s2 right-align">
 								<div class="action_icons">
@@ -76,7 +65,7 @@
 						</div>
 						<div class="row quote">
 							<div class="col s12">
-								<p>"We need to feed our souls too"</p>
+								<p>{{profile.profileRootObject.lcProfileStatement}} </p>
 							</div>
 						</div>
 						<!-- <div class="row">
@@ -126,4 +115,7 @@
 						</div>
 					</div>
 					
-				</div>
+
+
+
+ 
