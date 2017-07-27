@@ -62,8 +62,9 @@ export class CreateProfileService {
     }
 
     private extractData(res: Response) {
-        let body = res.json();
-        return body.data || {};
+        let body = res.text();
+        //console.log("Result Proilfle ID---->", body.toString());
+        return body.toString() || "";
     }
 
 }

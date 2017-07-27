@@ -18,7 +18,7 @@ export class ProfileService {
     getProfile(id : number): Observable<RootObject> {
         //string url = this.profileUrl;
         //console.info("URL--->",url);
-     let prof$ = this.http.get('http://immense-caverns-35815.herokuapp.com/findProfileById?user_id=3', {headers: this.getHeaders()})
+     let prof$ = this.http.get('http://immense-caverns-35815.herokuapp.com/findProfileById?user_id='+id, {headers: this.getHeaders()})
         .map((profileResp: Response) => profileResp.json()).catch(handleError);
 
         return prof$;

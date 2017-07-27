@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateProfileComponent }   from './createprofile.component';
 import { CreateProfileFieldsComponent }      from './createprofile-fields.component';
 import { ProfileLandingComponent } from './profilelanding.component';
+//import { HeroDetailComponent }  from './hero-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/createprofile', pathMatch: 'full' },
